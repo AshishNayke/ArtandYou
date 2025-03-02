@@ -40,6 +40,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initApp() {
+  // Check if user is authenticated
+  const userJson = localStorage.getItem('artAndYouUser');
+  let isAuthenticated = false;
+  
+  if (userJson) {
+    try {
+      const user = JSON.parse(userJson);
+      isAuthenticated = user.isAuthenticated;
+      console.log('User authenticated:', user.name);
+      
+      // Update UI for authenticated user
+      updateAuthUI(user);
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+    }
+  }
+
   // Check for required components
   const requiredComponents = [
     { name: 'gallery', element: document.querySelector('.gallery-grid') },
@@ -56,6 +73,41 @@ function initApp() {
       console.log(`Main.js: ${component.name} component not found in current page`);
     }
   });
+  
+  // Function to update UI for authenticated users
+  function updateAuthUI(user) {
+    // Find auth buttons container
+    const authButtonsDesktop = document.querySelector('.hidden.lg\\:flex.items-center.space-x-4');
+    const authButtonsMobile = document.getElementById('mobileMenu');
+    
+    if (authButtonsDesktop) {
+      // Replace with user profile info
+      authButtonsDesktop.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <span class="text-gray-700">Welcome, ${user.name}</span>
+          <div class="relative group">
+            <button class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+              ${user.name.charAt(0).toUpperCase()}
+            </button>
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
+              <a href="pages/profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+              <a href="pages/settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+              <button id="logoutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Add logout functionality
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('artAndYouUser');
+          window.location.reload();
+        });
+      }
+    }
+  }
   
   // Check for component managers - use safe checking to avoid errors
   
