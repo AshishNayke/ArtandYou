@@ -53,31 +53,31 @@ function initApp() {
     if (component.element) {
       console.log(`Main.js: ${component.name} component found`);
     } else {
-      console.warn(`Main.js: ${component.name} component not found in current page`);
+      console.log(`Main.js: ${component.name} component not found in current page`);
     }
   });
   
-  // Check for component managers
+  // Check for component managers - use safe checking to avoid errors
   
   // Navigation component is now managed in navigation.js
-  if (window.navigationManager) {
+  if (typeof window.navigationManager !== 'undefined') {
     console.log('Main.js: navigation component found (managed by NavigationManager)');
   } else {
-    console.warn('Main.js: navigation component not found or not yet initialized');
+    console.log('Main.js: navigation component not found or not yet initialized');
   }
   
   // Hero component is now managed in hero.js
-  if (window.heroManager && window.heroManager.doesHeroExist()) {
+  if (typeof window.heroManager !== 'undefined' && typeof window.heroManager.doesHeroExist === 'function') {
     console.log('Main.js: hero component found (managed by HeroManager)');
   } else {
-    console.warn('Main.js: hero component not found or not yet initialized');
+    console.log('Main.js: hero component not found or not yet initialized');
   }
   
   // Footer component is now managed in footer.js
-  if (window.footerManager) {
+  if (typeof window.footerManager !== 'undefined') {
     console.log('Main.js: footer component found (managed by FooterManager)');
   } else {
-    console.warn('Main.js: footer component not found or not yet initialized');
+    console.log('Main.js: footer component not found or not yet initialized');
   }
   
   // Initialize utilities

@@ -76,3 +76,56 @@ window.domUtils = {
     if (element) element.classList.remove(className);
   }
 };
+// Utility functions for Art&You marketplace
+
+// Safe event handler attachment - prevents null reference errors
+function safeAddEventListener(elementId, eventType, callback) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.addEventListener(eventType, callback);
+    return true;
+  }
+  return false;
+}
+
+// Safe query selector with event attachment
+function safeQuerySelector(selector, eventType, callback) {
+  const element = document.querySelector(selector);
+  if (element) {
+    element.addEventListener(eventType, callback);
+    return element;
+  }
+  return null;
+}
+
+// Check if an element exists in the DOM
+function elementExists(selector) {
+  return document.querySelector(selector) !== null;
+}
+
+// Function to safely access nested object properties
+function safeGet(obj, path, defaultValue = null) {
+  if (!obj) return defaultValue;
+  
+  const keys = path.split('.');
+  let result = obj;
+  
+  for (const key of keys) {
+    if (result === undefined || result === null) {
+      return defaultValue;
+    }
+    result = result[key];
+  }
+  
+  return result !== undefined ? result : defaultValue;
+}
+
+// Function to safely handle JSON data
+function safeParseJSON(str, defaultValue = {}) {
+  try {
+    return JSON.parse(str);
+  } catch (e) {
+    console.warn('Error parsing JSON:', e);
+    return defaultValue;
+  }
+}
