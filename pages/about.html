@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Art&You - Premium Marketplace for Unique Artworks">
+  <meta name="keywords" content="art, marketplace, about us, mission, vision, team">
+
+  <title>About Us - Art&You</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/utils.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/navigation.js" defer></script>
+  <script src="../assets/js/footer.js" defer></script>
+</head>
+
+<body>
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center space-x-2">
+          <img src="../assets/images/logo/logo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+          <span
+            class="text-2xl font-bold heading-font bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+            Art&You
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Gallery
+          </a>
+          <a href="artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Artists
+          </a>
+          <a href="auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Auctions
+          </a>
+          <a href="forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Forum
+          </a>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <a href="auth.html?form=sign-in"
+              class="w-full md:w-auto px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+              Sign In
+            </a>
+            <a href="auth.html?form=join"
+              class="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+              Join Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden rounded-md p-2 hover:bg-gray-100" aria-label="Menu" id="menuToggle">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu lg:hidden" id="mobileMenu">
+      <button type="button" id="closeMenu" aria-label="Close menu">&times;</button>
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Gallery
+        </a>
+        <a href="artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Artists
+        </a>
+        <a href="auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Auctions
+        </a>
+        <a href="forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Forum
+        </a>
+        <div class="flex flex-col gap-4 w-full max-w-xs">
+          <a href="auth.html?form=sign-in"
+            class="w-full px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+            Sign In
+          </a>
+          <a href="auth.html?form=join"
+            class="w-full px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+            Join Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 animate__animated animate__fadeInUp">About Art&You</h1>
+      <p class="text-xl max-w-3xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+        Connecting artists and art enthusiasts worldwide through a curated marketplace of exceptional artwork.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <img src="../assets/images/logo/altlogo.jpg" alt="Art&You Story" class="rounded-lg shadow-xl w-full h-auto">
+        </div>
+        <div class="fade-in">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">Our Story</h2>
+          <p class="text-gray-600 mb-4">
+            Founded in 2020, Art&You began with a simple vision: to create a platform where artists could showcase their work to a global audience, and where art enthusiasts could discover unique pieces that speak to their souls.
+          </p>
+          <p class="text-gray-600 mb-4">
+            What started as a small community of local artists has grown into a vibrant global marketplace, connecting creators and collectors from over 50 countries. Our journey has been marked by a commitment to authenticity, quality, and the celebration of artistic diversity.
+          </p>
+          <p class="text-gray-600">
+            Today, Art&You stands as a testament to the power of art to transcend boundaries and create meaningful connections across cultures and continents.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center max-w-3xl mx-auto mb-12 fade-in">
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">Our Mission</h2>
+        <p class="text-gray-600">
+          At Art&You, we're dedicated to democratizing the art world by breaking down traditional barriers between artists and art lovers. We believe that everyone should have access to beautiful, meaningful art, and that every artist deserves a platform to share their unique vision with the world.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div class="bg-white p-8 rounded-lg shadow-md fade-in">
+          <div class="text-blue-600 mb-4">
+            <i class="fas fa-paint-brush text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800">Support Artists</h3>
+          <p class="text-gray-600">
+            We provide artists with tools, resources, and visibility to thrive in their creative journeys and receive fair compensation for their work.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-md fade-in">
+          <div class="text-blue-600 mb-4">
+            <i class="fas fa-users text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800">Foster Community</h3>
+          <p class="text-gray-600">
+            We build bridges between creators and collectors, nurturing a vibrant community where artistic expression is celebrated and shared.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-md fade-in">
+          <div class="text-blue-600 mb-4">
+            <i class="fas fa-globe text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800">Global Access</h3>
+          <p class="text-gray-600">
+            We leverage technology to make exceptional art accessible to everyone, regardless of location or background.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800 fade-in">Meet Our Team</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto fade-in">
+          The passionate individuals behind Art&You who work tirelessly to connect artists with art enthusiasts worldwide.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="team-member fade-in">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Sarah Johnson" class="w-full h-64 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-bold text-gray-800">Sarah Johnson</h3>
+          <p class="text-blue-600 mb-2">Founder & CEO</p>
+          <p class="text-gray-600 mb-4">Art historian and entrepreneur with a passion for making art accessible to everyone.</p>
+          <div class="flex space-x-3">
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="team-member fade-in">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="David Kim" class="w-full h-64 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-bold text-gray-800">David Kim</h3>
+          <p class="text-blue-600 mb-2">Chief Curator</p>
+          <p class="text-gray-600 mb-4">Contemporary art specialist with over 15 years of experience in galleries worldwide.</p>
+          <div class="flex space-x-3">
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="team-member fade-in">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="Maya Patel" class="w-full h-64 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-bold text-gray-800">Maya Patel</h3>
+          <p class="text-blue-600 mb-2">Head of Artist Relations</p>
+          <p class="text-gray-600 mb-4">Former gallery owner dedicated to supporting emerging artists and their careers.</p>
+          <div class="flex space-x-3">
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="team-member fade-in">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&h=400&q=80" alt="James Wilson" class="w-full h-64 object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-bold text-gray-800">James Wilson</h3>
+          <p class="text-blue-600 mb-2">Tech Lead</p>
+          <p class="text-gray-600 mb-4">Software engineer with a background in design who bridges technology and creativity.</p>
+          <div class="flex space-x-3">
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-blue-600">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800 fade-in">Our Values</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto fade-in">
+          The principles that guide everything we do at Art&You.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="flex items-start space-x-4 fade-in">
+          <div class="flex-shrink-0 pt-1">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">Authenticity</h3>
+            <p class="text-gray-600">
+              We value genuine expression and ensure all artwork on our platform is original and authentic.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 fade-in">
+          <div class="flex-shrink-0 pt-1">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+              <i class="fas fa-handshake"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">Integrity</h3>
+            <p class="text-gray-600">
+              We operate with transparency and honesty in all our interactions with artists and collectors.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 fade-in">
+          <div class="flex-shrink-0 pt-1">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+              <i class="fas fa-palette"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">Creativity</h3>
+            <p class="text-gray-600">
+              We celebrate innovation and creative expression in all its forms, pushing boundaries and perspectives.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4 fade-in">
+          <div class="flex-shrink-0 pt-1">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+              <i class="fas fa-heart"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2 text-gray-800">Passion</h3>
+            <p class="text-gray-600">
+              We're driven by a deep love for art and a commitment to the artists and collectors in our community.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div class="fade-in">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">Get In Touch</h2>
+          <p class="text-gray-600 mb-8">
+            Have questions or want to learn more about Art&You? We'd love to hear from you. Reach out to our team through any of the channels below.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="text-blue-600 mt-1"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <h4 class="font-bold text-gray-800">Visit Us</h4>
+                <p class="text-gray-600">123 Art Street, Creative District, 12345</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="text-blue-600 mt-1"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4 class="font-bold text-gray-800">Email Us</h4>
+                <p class="text-gray-600">contact@artyou.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="text-blue-600 mt-1"><i class="fas fa-phone"></i></div>
+              <div>
+                <h4 class="font-bold text-gray-800">Call Us</h4>
+                <p class="text-gray-600">+1 234 567 890</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="text-blue-600 mt-1"><i class="fas fa-clock"></i></div>
+              <div>
+                <h4 class="font-bold text-gray-800">Office Hours</h4>
+                <p class="text-gray-600">Monday - Friday: 9AM - 6PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <form class="bg-gray-50 p-8 rounded-lg shadow-md">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="mb-6">
+              <label for="email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+              <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="mb-6">
+              <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+              <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="mb-6">
+              <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+              <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer class="bg-gray-900 text-white pt-20 pb-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <!-- Brand Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-2">
+            <img src="../assets/images/logo/altlogo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+            <span class="text-2xl font-bold heading-font">Art&You</span>
+          </div>
+          <p class="text-gray-400">Connecting artists and art lovers worldwide through a curated marketplace of
+            exceptional artwork.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-4">
+            <li>
+              <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="gallery.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="artist.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Artists
+              </a>
+            </li>
+            <li>
+              <a href="auction.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Auction
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1.5 mr-3"></i>
+              <span class="text-gray-400">123 Art Street, Creative District, 12345</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3"></i>
+              <span class="text-gray-400">+1 234 567 890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3"></i>
+              <span class="text-gray-400">contact@artyou.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Subscribe to receive updates about new artworks and upcoming auctions.</p>
+          <form class="space-y-4">
+            <div class="relative">
+              <input type="email" placeholder="Your email address"
+                class="w-full px-4 py-3 rounded-full bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-600 text-white">
+              <button type="submit"
+                class="absolute right-2 top-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-800 mt-16 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2025 Art&You. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button
+    class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors transform hover:scale-110 hidden"
+    id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+</body>
+
+</html>
