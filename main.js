@@ -1,4 +1,3 @@
-
 // Main application coordinator
 // Individual components are managed in their respective files:
 // - navigation.js - Navigation features
@@ -27,14 +26,14 @@ window.getModalType = function(type) {
 
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Main.js: Application initialized');
-  
+
   // Initialize global error handling
   window.addEventListener('error', function(event) {
     console.error('Global error caught:', event.error);
     // Prevent error notifications in production
     // event.preventDefault();
   });
-  
+
   // Initialize core app functionality
   initApp();
 });
@@ -43,13 +42,13 @@ function initApp() {
   // Check if user is authenticated
   const userJson = localStorage.getItem('artAndYouUser');
   let isAuthenticated = false;
-  
+
   if (userJson) {
     try {
       const user = JSON.parse(userJson);
       isAuthenticated = user.isAuthenticated;
       console.log('User authenticated:', user.name);
-      
+
       // Update UI for authenticated user
       updateAuthUI(user);
     } catch (error) {
@@ -64,7 +63,7 @@ function initApp() {
     { name: 'artists', element: document.getElementById('featuredArtists') },
     { name: 'forum', element: document.querySelector('.forum-topics') }
   ];
-  
+
   // Log component availability for debugging
   requiredComponents.forEach(component => {
     if (component.element) {
@@ -73,13 +72,13 @@ function initApp() {
       console.log(`Main.js: ${component.name} component not found in current page`);
     }
   });
-  
+
   // Function to update UI for authenticated users
   function updateAuthUI(user) {
     // Find auth buttons container
     const authButtonsDesktop = document.querySelector('.hidden.lg\\:flex.items-center.space-x-4');
     const authButtonsMobile = document.getElementById('mobileMenu');
-    
+
     if (authButtonsDesktop) {
       // Replace with user profile info
       authButtonsDesktop.innerHTML = `
@@ -90,48 +89,68 @@ function initApp() {
               ${user.name.charAt(0).toUpperCase()}
             </button>
             <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-              <a href="pages/profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
-              <a href="pages/settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-              <button id="logoutBtn" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign Out</button>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutBtn">Sign out</a>
             </div>
           </div>
         </div>
       `;
-      
+
       // Add logout functionality
       const logoutBtn = document.getElementById('logoutBtn');
       if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-          localStorage.removeItem('artAndYouUser');
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.removeItem('authUser');
           window.location.reload();
         });
       }
     }
   }
-  
+
+  // Check if user is logged in
+  function checkAuthStatus() {
+    const userJson = localStorage.getItem('authUser');
+    if (userJson) {
+      try {
+        const user = JSON.parse(userJson);
+        updateAuthUI(user);
+      } catch (e) {
+        console.error('Failed to parse user data:', e);
+      }
+    }
+  }
+
+  // Add event listener for page load to check auth status
+  document.addEventListener('DOMContentLoaded', () => {
+    checkAuthStatus();
+  });
+
+
   // Check for component managers - use safe checking to avoid errors
-  
+
   // Navigation component is now managed in navigation.js
   if (typeof window.navigationManager !== 'undefined') {
     console.log('Main.js: navigation component found (managed by NavigationManager)');
   } else {
     console.log('Main.js: navigation component not found or not yet initialized');
   }
-  
+
   // Hero component is now managed in hero.js
   if (typeof window.heroManager !== 'undefined' && typeof window.heroManager.doesHeroExist === 'function') {
     console.log('Main.js: hero component found (managed by HeroManager)');
   } else {
     console.log('Main.js: hero component not found or not yet initialized');
   }
-  
+
   // Footer component is now managed in footer.js
   if (typeof window.footerManager !== 'undefined') {
     console.log('Main.js: footer component found (managed by FooterManager)');
   } else {
     console.log('Main.js: footer component not found or not yet initialized');
   }
-  
+
   // Initialize utilities
   initUtilities();
 }
@@ -139,7 +158,7 @@ function initApp() {
 function initUtilities() {
   // Initialize back to top button
   const backToTopButton = document.getElementById('backToTop');
-  
+
   if (backToTopButton) {
     window.addEventListener('scroll', function() {
       if (window.scrollY > 500) {
@@ -148,7 +167,7 @@ function initUtilities() {
         backToTopButton.classList.add('hidden');
       }
     });
-    
+
     backToTopButton.addEventListener('click', function() {
       window.scrollTo({
         top: 0,
@@ -156,7 +175,7 @@ function initUtilities() {
       });
     });
   }
-  
+
   // Initialize safeguard for null elements
   window.safeSetProperty = function(element, property, value) {
     if (element) {
