@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Art&You Forum - Join discussions about art, techniques, and the creative industry">
+  <meta name="keywords" content="art forum, artist discussions, art community, art techniques">
+
+  <title>Art&You - Forum</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.2/intersection-observer.min.js" defer></script>
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/forum.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
+</head>
+
+<body>
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center space-x-2">
+          <img src="../assets/images/logo/logo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+          <span
+            class="text-2xl font-bold heading-font bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+            Art&You
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="../pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Gallery
+          </a>
+          <a href="../pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Artists
+          </a>
+          <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Auctions
+          </a>
+          <a href="../pages/forum.html" class="nav-link text-blue-600 font-medium">
+            Forum
+          </a>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <a href="../pages/auth.html?form=sign-in"
+              class="w-full md:w-auto px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+              Sign In
+            </a>
+            <a href="../pages/auth.html?form=join"
+              class="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+              Join Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden rounded-md p-2 hover:bg-gray-100" aria-label="Menu" id="menuToggle">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu lg:hidden" id="mobileMenu">
+      <button type="button" id="closeMenu" aria-label="Close menu">&times;</button>
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="../pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Gallery
+        </a>
+        <a href="../pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Artists
+        </a>
+        <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Auctions
+        </a>
+        <a href="../pages/forum.html" class="nav-link text-blue-600 font-medium text-xl">
+          Forum
+        </a>
+        <div class="flex flex-col gap-4 w-full max-w-xs">
+          <a href="../pages/auth.html?form=sign-in"
+            class="w-full px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+            Sign In
+          </a>
+          <a href="../pages/auth.html?form=join"
+            class="w-full px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+            Join Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold heading-font mb-4 
+        animate__animated animate__fadeInUp">Discussion Forum</h1>
+      <p class="text-xl text-blue-100 max-w-2xl mx-auto   animate__animated animate__fadeInUp">
+        Join vibrant conversations about art, techniques, and creative insights with our community.
+      </p>
+    </div>
+  </header>
+
+  <!-- Forum Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Forum Sidebar -->
+        <div class="lg:col-span-1">
+          <!-- Search Bar -->
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-bold mb-4">Search Discussions</h3>
+            <div class="relative">
+              <input type="text" id="forumSearchInput" placeholder="Search topics..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <button class="absolute right-3 top-2 text-blue-600">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Categories -->
+          <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-bold mb-4">Categories</h3>
+            <ul class="forum-categories space-y-2">
+              <!-- Categories will be added dynamically via forum.js -->
+              <li class="flex items-center justify-between rounded-lg p-3 bg-gray-50">
+                <div class="flex items-center">
+                  <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
+                    <i class="fas fa-spinner fa-spin"></i>
+                  </div>
+                  <span>Loading...</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Popular Tags -->
+          <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-4">Popular Tags</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#digitalart</span>
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">#oilpainting</span>
+              <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">#sculpture</span>
+              <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm">#artmarket</span>
+              <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">#arthistory</span>
+              <span class="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm">#contemporaryart</span>
+              <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">#arttechniques</span>
+              <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm">#artcollector</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forum Content -->
+        <div class="lg:col-span-2">
+          <!-- Filter Bar -->
+          <div class="flex flex-wrap justify-between items-center mb-8 gap-4">
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="forum-filter-button active px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700">
+                All Topics
+              </button>
+              <button class="forum-filter-button px-4 py-2 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white">
+                Recent
+              </button>
+              <button class="forum-filter-button px-4 py-2 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white">
+                Popular
+              </button>
+              <button class="forum-filter-button px-4 py-2 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white">
+                Unanswered
+              </button>
+            </div>
+            <button class="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+              New Topic <i class="fas fa-plus ml-2"></i>
+            </button>
+          </div>
+
+          <!-- Forum Topics -->
+          <div class="forum-topics space-y-6">
+            <!-- Topics will be dynamically generated here via forum.js -->
+            <div id="forum-fallback" class="space-y-6">
+              <div class="bg-white rounded-xl p-6 shadow-lg animate-pulse">
+                <div class="flex items-start gap-4">
+                  <div class="hidden md:block p-3 rounded-full bg-gray-200 h-12 w-12"></div>
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 bg-gray-200 rounded w-24"></div>
+                      <div class="h-4 bg-gray-200 rounded w-32"></div>
+                    </div>
+                    <div class="h-8 bg-gray-200 rounded w-3/4 mt-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mt-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mt-2"></div>
+                    <div class="flex justify-between items-center mt-4">
+                      <div class="flex gap-4">
+                        <div class="h-4 bg-gray-200 rounded w-20"></div>
+                        <div class="h-4 bg-gray-200 rounded w-20"></div>
+                      </div>
+                      <div class="h-8 bg-gray-200 rounded w-32"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white rounded-xl p-6 shadow-lg animate-pulse">
+                <div class="flex items-start gap-4">
+                  <div class="hidden md:block p-3 rounded-full bg-gray-200 h-12 w-12"></div>
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 bg-gray-200 rounded w-24"></div>
+                      <div class="h-4 bg-gray-200 rounded w-32"></div>
+                    </div>
+                    <div class="h-8 bg-gray-200 rounded w-3/4 mt-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mt-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mt-2"></div>
+                    <div class="flex justify-between items-center mt-4">
+                      <div class="flex gap-4">
+                        <div class="h-4 bg-gray-200 rounded w-20"></div>
+                        <div class="h-4 bg-gray-200 rounded w-20"></div>
+                      </div>
+                      <div class="h-8 bg-gray-200 rounded w-32"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="mt-12 flex justify-center">
+            <div class="flex space-x-2">
+              <button
+                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors">1</button>
+              <button
+                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">2</button>
+              <button
+                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">3</button>
+              <button
+                class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Join the Conversation</h2>
+      <p class="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">
+        Share your expertise, ask questions, and connect with fellow art enthusiasts in our vibrant community.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="../pages/auth.html?form=join"
+          class="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors font-semibold">
+          Sign Up Now
+        </a>
+        <a href="#"
+          class="px-8 py-3 bg-transparent border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition-colors font-semibold">
+          Learn Community Guidelines
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer class="bg-gray-900 text-white pt-20 pb-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <!-- Brand Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-2">
+            <img src="../assets/images/logo/altlogo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+            <span class="text-2xl font-bold heading-font">Art&You</span>
+          </div>
+          <p class="text-gray-400">Connecting artists and art lovers worldwide through a curated marketplace of
+            exceptional artwork.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-4">
+            <li>
+              <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="../pages/gallery.html"
+                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="../pages/artist.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Artists
+              </a>
+            </li>
+            <li>
+              <a href="../pages/auction.html"
+                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Auction
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1.5 mr-3"></i>
+              <span class="text-gray-400">123 Art Street, Creative District, 12345</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3"></i>
+              <span class="text-gray-400">+1 234 567 890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3"></i>
+              <span class="text-gray-400">contact@artyou.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Subscribe to receive updates about new artworks and upcoming auctions.</p>
+          <form class="space-y-4">
+            <div class="relative">
+              <input type="email" placeholder="Your email address"
+                class="w-full px-4 py-3 rounded-full bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-600 text-white">
+              <button type="submit"
+                class="absolute right-2 top-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-800 mt-16 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2025 Art&You. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button
+    class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors transform hover:scale-110 hidden"
+    id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</body>
+
+</html>

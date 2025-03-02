@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Art&You - Premium Marketplace for Unique Artworks">
-  <meta name="keywords" content="art, marketplace, digital art, paintings, sculptures, auctions">
+  <meta name="description" content="Art&You Gallery - Browse our curated collection of unique artworks">
+  <meta name="keywords" content="art, gallery, digital art, paintings, sculptures, photography">
 
-  <title>Art&You - Premium Art Marketplace</title>
+  <title>Art&You - Gallery</title>
 
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/main.css">
   <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.2/intersection-observer.min.js" defer></script>
-  <script src="assets/js/config.js" defer></script>
-  <script src="assets/js/utils.js" defer></script>
-  <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/navigation.js" defer></script>
-  <script src="assets/js/hero.js" defer></script>
-  <script src="assets/js/gallery.js" defer></script>
-  <script src="assets/js/auctions.js" defer></script>
-  <script src="assets/js/artists.js" defer></script>
-  <script src="assets/js/forum.js" defer></script>
-  <script src="assets/js/footer.js" defer></script>
-  <script src="assets/js/auth.js" defer></script>
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/gallery.js" defer></script>
+  <script src="../assets/js/artists.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
 </head>
 
 <body>
@@ -34,13 +28,13 @@
     <div class="spinner"></div>
   </div>
 
-  <!-- In the navigation section, add the theme toggle before the auth buttons -->
+  <!-- Navigation -->
   <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-20">
         <!-- Logo -->
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="assets/images/logo/logo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+        <a href="../index.html" class="flex items-center space-x-2">
+          <img src="../assets/images/logo/logo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
           <span
             class="text-2xl font-bold heading-font bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
             Art&You
@@ -49,29 +43,28 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden lg:flex items-center space-x-8">
-          <a href="pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+          <a href="../pages/gallery.html" class="nav-link text-blue-600 font-medium">
             Gallery
           </a>
-          <a href="pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+          <a href="../pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
             Artists
           </a>
-          <a href="pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+          <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
             Auctions
           </a>
-          <a href="pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+          <a href="../pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
             Forum
           </a>
         </div>
 
-
         <!-- Auth Buttons -->
         <div class="hidden lg:flex items-center space-x-4">
           <div class="flex flex-col md:flex-row gap-4">
-            <a href="pages/auth.html?form=sign-in"
+            <a href="../pages/auth.html?form=sign-in"
               class="w-full md:w-auto px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
               Sign In
             </a>
-            <a href="pages/auth.html?form=join"
+            <a href="../pages/auth.html?form=join"
               class="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
               Join Now
             </a>
@@ -91,24 +84,24 @@
     <div class="mobile-menu lg:hidden" id="mobileMenu">
       <button type="button" id="closeMenu" aria-label="Close menu">&times;</button>
       <div class="flex flex-col items-center justify-center h-full space-y-8">
-        <a href="pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+        <a href="../pages/gallery.html" class="nav-link text-blue-600 font-medium text-xl">
           Gallery
         </a>
-        <a href="pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+        <a href="../pages/artist.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
           Artists
         </a>
-        <a href="pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+        <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
           Auctions
         </a>
-        <a href="pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+        <a href="../pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
           Forum
         </a>
         <div class="flex flex-col gap-4 w-full max-w-xs">
-          <a href="pages/auth.html?form=sign-in"
+          <a href="../pages/auth.html?form=sign-in"
             class="w-full px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
             Sign In
           </a>
-          <a href="pages/auth.html?form=join"
+          <a href="../pages/auth.html?form=join"
             class="w-full px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
             Join Now
           </a>
@@ -117,65 +110,23 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="heroSection" class="relative min-h-[85vh] overflow-hidden flex items-center justify-center">
-    <div class="hero-content text-center text-white max-w-4xl relative z-10 px-4 py-12 md:py-20">
-      <h1
-        class="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 md:mb-8 heading-font animate__animated animate__fadeInUp bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
-        Discover Extraordinary Art
-      </h1>
-      <p
-        class="text-lg md:text-xl mb-8 md:mb-10 animate__animated animate__fadeInUp animate__delay-0.2s text-blue-50 max-w-2xl mx-auto">
-        Join our curated community of artists and collectors to explore unique pieces
-        and own exclusive artwork from around the world.
+  <!-- Page Header -->
+  <header class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold heading-font mb-4 
+        animate__animated animate__fadeInUp">Explore Our Gallery</h1>
+      <p class="text-xl text-blue-100 max-w-2xl mx-auto 
+        animate__animated animate__fadeInUp">
+        Discover a curated collection of extraordinary artworks from talented artists around the world.
       </p>
-      <div
-        class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center animate__animated animate__fadeInUp animate__delay-0.2s">
-        <a href="pages/gallery.html"
-          class="group px-6 md:px-8 py-3 md:py-4 bg-white text-blue-600 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105 hover:shadow-lg font-semibold">
-          Explore Gallery
-          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-        </a>
-        <a href="pages/auth.html?form=join"
-          class="group px-6 md:px-8 py-3 md:py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105 hover:shadow-lg font-semibold">
-          Join Community
-          <i class="fas fa-users ml-2"></i>
-        </a>
-      </div>
     </div>
+  </header>
 
-    <!-- Animated Background Elements -->
-    <div class="floating-container">
-      <div class="float-element" data-speed="1">
-        <div class="floating-shape bg-gradient-1"></div>
-      </div>
-      <div class="float-element" data-speed="1.5">
-        <div class="floating-shape bg-gradient-2"></div>
-      </div>
-      <div class="float-element" data-speed="2">
-        <div class="floating-shape bg-gradient-3"></div>
-      </div>
-      <div class="float-element" data-speed="1.8">
-        <div class="floating-shape bg-gradient-4"></div>
-      </div>
-      <div class="float-element" data-speed="1.3">
-        <div class="floating-shape bg-gradient-5"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section (Standalone) -->
-  <section id="gallerySection" class="py-20 bg-white">
+  <!-- Gallery Section -->
+  <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <div class="text-center mb-6">
-        <h2 class="text-4xl font-bold heading-font mb-4">Featured Artworks</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Discover unique pieces from our talented artists, carefully curated for art enthusiasts.
-        </p>
-      </div>
-
       <!-- Gallery Filters and Search Bar -->
-      <div class="mb-6 flex flex-wrap justify-center items-center gap-4 md:flex-nowrap">
+      <div class="mb-12 flex flex-wrap justify-center items-center gap-4 md:flex-nowrap">
         <div class="flex flex-wrap gap-3 justify-center">
           <!-- Dynamic Search Bar -->
           <div class="flex-grow min-w-[200px] md:w-auto">
@@ -196,7 +147,7 @@
       </div>
 
       <!-- Gallery Grid -->
-      <div class="gallery-grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div class="gallery-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <div class="text-center py-12" id="gallery-fallback">
           <div class="animate-pulse space-y-4">
             <div class="h-48 bg-gray-200 rounded-lg"></div>
@@ -206,125 +157,48 @@
           <p class="mt-4 text-gray-500">Loading amazing artworks...</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Load More Button -->
-      <div class="text-center mt-6">
-        <button id="load-more" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-all">
-          Load More
-        </button>
+  <!-- Gallery Stats Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-md text-center">
+          <div class="text-5xl font-bold text-blue-600 mb-2">200+</div>
+          <div class="text-gray-600">Artworks</div>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-md text-center">
+          <div class="text-5xl font-bold text-purple-600 mb-2">50+</div>
+          <div class="text-gray-600">Artists</div>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-md text-center">
+          <div class="text-5xl font-bold text-green-600 mb-2">10+</div>
+          <div class="text-gray-600">Art Categories</div>
+        </div>
+        <div class="bg-white p-8 rounded-xl shadow-md text-center">
+          <div class="text-5xl font-bold text-red-600 mb-2">5k+</div>
+          <div class="text-gray-600">Art Lovers</div>
+        </div>
       </div>
     </div>
   </section>
 
-
-  <!-- Live Auctions Section -->
-  <section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold heading-font mb-4">Live Auctions</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Bid on exclusive artworks from renowned artists around the world.
-        </p>
-      </div>
-
-      <div class="auction-grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <!-- Sample Auction Items -->
-
-
-            <!-- Bid History Accordion -->
-            <div class="mb-4 border border-gray-200 rounded-lg">
-              <button class="bid-history-toggle flex justify-between items-center w-full px-4 py-2 text-left text-sm font-medium text-blue-600 bg-gray-50 hover:bg-gray-100 rounded-lg focus:outline-none">
-                <span>View Bid History</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              <div class="bid-history-content hidden px-4 py-2">
-                <ul class="text-sm divide-y divide-gray-200">
-                  <li class="py-2 flex justify-between">
-                    <span class="text-gray-600">user123</span>
-                    <span class="font-medium">₹15,000</span>
-                  </li>
-                  <li class="py-2 flex justify-between">
-                    <span class="text-gray-600">artlover77</span>
-                    <span class="font-medium">₹14,500</span>
-                  </li>
-                  <li class="py-2 flex justify-between">
-                    <span class="text-gray-600">collector22</span>
-                    <span class="font-medium">₹12,000</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <button
-              class="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105">
-              Place Bid Now
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-center mt-8">
-        <a href="pages/auction.html" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-          View All Auctions
-          <i class="fas fa-arrow-right ml-2"></i>
+  <!-- Call to Action -->
+  <section class="py-16 bg-blue-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Art Collection?</h2>
+      <p class="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+        Join our community of artists and collectors to discover, buy, and sell exceptional artwork.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="../pages/auth.html?form=join"
+          class="px-8 py-3 bg-white text-blue-600 rounded-full hover:bg-blue-50 transition-colors font-semibold">
+          Join Now
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Enhanced Featured Artists Section -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold heading-font mb-4">Featured Artists</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Meet the talented creators behind our exceptional artworks.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="featuredArtists">
-        <!-- Artist cards will be dynamically generated here via artists.js -->
-      </div>
-      <div class="text-center mt-8">
-        <a href="pages/artist.html" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-          View All Artists
-          <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add new Forum section -->
-  <section class="py-20 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold heading-font mb-4">Art Community Forum</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Join discussions, share insights, and stay updated with the latest in the art world.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Categories Overview -->
-        <div class="lg:col-span-1 fade-in bg-white rounded-xl p-6 shadow-lg">
-          <h3 class="text-xl font-bold mb-4">Categories</h3>
-          <ul class="space-y-4 forum-categories">
-            <!-- Categories will be dynamically generated here via forum.js -->
-          </ul>
-        </div>
-
-        <!-- Latest Topics -->
-        <div class="lg:col-span-3 space-y-4 forum-topics">
-          <!-- Forum topics will be dynamically generated here via forum.js -->
-        </div>
-      </div>
-
-      <div class="text-center mt-8">
-        <a href="pages/forum.html" class="inline-flex items-center px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-          View All Discussions
-          <i class="fas fa-arrow-right ml-2"></i>
+        <a href="../pages/auction.html"
+          class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-blue-600 transition-colors font-semibold">
+          Explore Auctions
         </a>
       </div>
     </div>
@@ -337,7 +211,7 @@
         <!-- Brand Section -->
         <div class="space-y-6">
           <div class="flex items-center space-x-2">
-            <img src="assets/images/logo/altlogo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+            <img src="../assets/images/logo/altlogo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
             <span class="text-2xl font-bold heading-font">Art&You</span>
           </div>
           <p class="text-gray-400">Connecting artists and art lovers worldwide through a curated marketplace of
@@ -363,25 +237,25 @@
           <h4 class="text-lg font-bold mb-6">Quick Links</h4>
           <ul class="space-y-4">
             <li>
-              <a href="index.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+              <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
                 <i class="fas fa-chevron-right mr-2 text-sm"></i>
                 Home
               </a>
             </li>
             <li>
-              <a href="pages/gallery.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+              <a href="../pages/gallery.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
                 <i class="fas fa-chevron-right mr-2 text-sm"></i>
                 Gallery
               </a>
             </li>
             <li>
-              <a href="pages/artist.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+              <a href="../pages/artist.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
                 <i class="fas fa-chevron-right mr-2 text-sm"></i>
                 Artists
               </a>
             </li>
             <li>
-              <a href="pages/auction.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+              <a href="../pages/auction.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
                 <i class="fas fa-chevron-right mr-2 text-sm"></i>
                 Auction
               </a>
@@ -438,12 +312,10 @@
     id="backToTop">
     <i class="fas fa-arrow-up"></i>
   </button>
-
-  <!-- All JavaScript moved to head with defer for better loading control -->
-
 </body>
 
 </html>
+
 
 <!-- Auction Item Modal -->
 <div id="auctionModal" class="modal">

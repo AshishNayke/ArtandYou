@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Art&You Artists - Discover talented artists from around the world">
+  <meta name="keywords" content="art, artists, painters, sculptors, digital artists, photographers">
+
+  <title>Art&You - Artists</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.2/intersection-observer.min.js" defer></script>
+  <script src="../assets/js/config.js" defer></script>
+  <script src="../assets/js/artists.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth.js" defer></script>
+</head>
+
+<body>
+  <div class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center space-x-2">
+          <img src="../assets/images/logo/logo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+          <span
+            class="text-2xl font-bold heading-font bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+            Art&You
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="../pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Gallery
+          </a>
+          <a href="../pages/artist.html" class="nav-link text-blue-600 font-medium">
+            Artists
+          </a>
+          <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Auctions
+          </a>
+          <a href="../pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors">
+            Forum
+          </a>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="hidden lg:flex items-center space-x-4">
+          <div class="flex flex-col md:flex-row gap-4">
+            <a href="../pages/auth.html?form=sign-in"
+              class="w-full md:w-auto px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+              Sign In
+            </a>
+            <a href="../pages/auth.html?form=join"
+              class="w-full md:w-auto px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+              Join Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden rounded-md p-2 hover:bg-gray-100" aria-label="Menu" id="menuToggle">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu lg:hidden" id="mobileMenu">
+      <button type="button" id="closeMenu" aria-label="Close menu">&times;</button>
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="../pages/gallery.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Gallery
+        </a>
+        <a href="../pages/artist.html" class="nav-link text-blue-600 font-medium text-xl">
+          Artists
+        </a>
+        <a href="../pages/auction.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Auctions
+        </a>
+        <a href="../pages/forum.html" class="nav-link text-gray-700 hover:text-blue-600 transition-colors text-xl">
+          Forum
+        </a>
+        <div class="flex flex-col gap-4 w-full max-w-xs">
+          <a href="../pages/auth.html?form=sign-in"
+            class="w-full px-6 py-2 text-gray-700 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-center">
+            Sign In
+          </a>
+          <a href="../pages/auth.html?form=join"
+            class="w-full px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors transform hover:scale-105 text-center">
+            Join Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="bg-gradient-to-r from-purple-700 to-indigo-800 text-white py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold heading-font mb-4 
+        animate__animated animate__fadeInUp">Our Featured Artists</h1>
+      <p class="text-xl text-purple-100 max-w-2xl mx-auto  
+        animate__animated animate__fadeInUp">
+        Discover the talented creators behind our exceptional artworks from around the world.
+      </p>
+    </div>
+  </header>
+
+  <!-- Artists Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Artist Filters and Search Bar -->
+      <div class="mb-12 flex flex-wrap justify-center items-center gap-4 md:flex-nowrap">
+        <div class="flex flex-wrap gap-3 justify-center">
+          <!-- Dynamic Search Bar -->
+          <div class="flex-grow min-w-[200px] md:w-auto">
+            <input type="text" id="artistSearchInput" placeholder="Search artists..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <button
+            class="artist-filter-button active px-6 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700"
+            data-specialty="all">All Artists</button>
+          <button class="artist-filter-button px-6 py-2 rounded-full bg-gray-100 hover:bg-purple-600 hover:text-white"
+            data-specialty="Painter">Painters</button>
+          <button class="artist-filter-button px-6 py-2 rounded-full bg-gray-100 hover:bg-purple-600 hover:text-white"
+            data-specialty="Digital Artist">Digital Artists</button>
+          <button class="artist-filter-button px-6 py-2 rounded-full bg-gray-100 hover:bg-purple-600 hover:text-white"
+            data-specialty="Sculptor">Sculptors</button>
+          <button class="artist-filter-button px-6 py-2 rounded-full bg-gray-100 hover:bg-purple-600 hover:text-white"
+            data-specialty="Photographer">Photographers</button>
+        </div>
+      </div>
+
+      <!-- Artists Grid -->
+      <div id="artistsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div class="text-center py-12" id="artists-fallback">
+          <div class="animate-pulse space-y-4">
+            <div class="h-48 bg-gray-200 rounded-lg"></div>
+            <div class="h-4 bg-gray-200 rounded w-3/4 mx-auto"></div>
+            <div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
+          </div>
+          <p class="mt-4 text-gray-500">Loading talented artists...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Artist Spotlight -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold heading-font mb-4">Artist Spotlight</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Get to know our featured artist of the month and their extraordinary work.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <div class="mb-6">
+              <span class="px-4 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">Featured
+                Artist</span>
+            </div>
+            <h3 class="text-3xl font-bold mb-4">Elena Mikhailov</h3>
+            <p class="text-lg text-gray-600 mb-2">Master Painter</p>
+            <div class="flex items-center mb-6">
+              <div class="flex">
+                <i class="fas fa-star text-yellow-500"></i>
+                <i class="fas fa-star text-yellow-500"></i>
+                <i class="fas fa-star text-yellow-500"></i>
+                <i class="fas fa-star text-yellow-500"></i>
+                <i class="fas fa-star text-yellow-500"></i>
+              </div>
+              <span class="ml-2 text-gray-600">5.0 (124 reviews)</span>
+            </div>
+            <p class="text-gray-700 mb-8">
+              Elena Mikhailov is a renowned artist known for her impressionist style and vibrant use of colors. With
+              over 15 years of experience, her work has been featured in galleries across Europe and North America. Her
+              pieces often explore themes of nature and human emotion.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#" class="px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition-colors">
+                View Full Profile
+              </a>
+              <a href="#"
+                class="px-6 py-3 border border-purple-600 text-purple-600 rounded-full hover:bg-purple-50 transition-colors">
+                See All Works
+              </a>
+            </div>
+          </div>
+          <div class="h-64 md:h-auto bg-center bg-cover"
+            style="background-image: url('../assets/images/auction/painting20.jpg')"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artist Stats Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-8 rounded-xl shadow-md text-center text-white">
+          <div class="text-5xl font-bold mb-2">50+</div>
+          <div class="text-purple-100">Exceptional Artists</div>
+        </div>
+        <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 rounded-xl shadow-md text-center text-white">
+          <div class="text-5xl font-bold mb-2">15+</div>
+          <div class="text-blue-100">Countries Represented</div>
+        </div>
+        <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 p-8 rounded-xl shadow-md text-center text-white">
+          <div class="text-5xl font-bold mb-2">3.5k+</div>
+          <div class="text-indigo-100">Artworks Created</div>
+        </div>
+        <div class="bg-gradient-to-r from-violet-500 to-violet-600 p-8 rounded-xl shadow-md text-center text-white">
+          <div class="text-5xl font-bold mb-2">12+</div>
+          <div class="text-violet-100">Art Styles</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 bg-purple-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Are You an Artist?</h2>
+      <p class="text-xl mb-8 text-purple-100 max-w-2xl mx-auto">
+        Join our community of artists and showcase your work to art enthusiasts around the world.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="../pages/auth.html?form=join"
+          class="px-8 py-3 bg-white text-purple-600 rounded-full hover:bg-purple-50 transition-colors font-semibold">
+          Join As Artist
+        </a>
+        <a href="#"
+          class="px-8 py-3 bg-transparent border-2 border-white text-white rounded-full hover:bg-white hover:text-purple-600 transition-colors font-semibold">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer class="bg-gray-900 text-white pt-20 pb-10">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <!-- Brand Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-2">
+            <img src="../assets/images/logo/altlogo.jpg" alt="Art&You Logo" class="w-10 h-10 rounded-full">
+            <span class="text-2xl font-bold heading-font">Art&You</span>
+          </div>
+          <p class="text-gray-400">Connecting artists and art lovers worldwide through a curated marketplace of
+            exceptional artwork.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-4">
+            <li>
+              <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="../pages/gallery.html"
+                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="../pages/artist.html" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Artists
+              </a>
+            </li>
+            <li>
+              <a href="../pages/auction.html"
+                class="text-gray-400 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-chevron-right mr-2 text-sm"></i>
+                Auction
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1.5 mr-3"></i>
+              <span class="text-gray-400">123 Art Street, Creative District, 12345</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3"></i>
+              <span class="text-gray-400">+1 234 567 890</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3"></i>
+              <span class="text-gray-400">contact@artyou.com</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-lg font-bold mb-6">Newsletter</h4>
+          <p class="text-gray-400 mb-4">Subscribe to receive updates about new artworks and upcoming auctions.</p>
+          <form class="space-y-4">
+            <div class="relative">
+              <input type="email" placeholder="Your email address"
+                class="w-full px-4 py-3 rounded-full bg-gray-800 border border-gray-700 focus:outline-none focus:border-purple-600 text-white">
+              <button type="submit"
+                class="absolute right-2 top-2 bg-purple-600 text-white px-4 py-1 rounded-full hover:bg-purple-700 transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-800 mt-16 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2025 Art&You. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button
+    class="fixed bottom-8 right-8 bg-purple-600 text-white p-4 rounded-full shadow-lg hover:bg-purple-700 transition-colors transform hover:scale-110 hidden"
+    id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</body>
+
+</html>
