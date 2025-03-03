@@ -235,3 +235,48 @@ function showNotification(message, type = 'info') {
 function generateMockId() {
   return 'user_' + Math.random().toString(36).substring(2, 15);
 }
+// Utility functions for the Art&You website
+
+// Handle loading spinner
+window.addEventListener('load', function() {
+  const loadingSpinner = document.querySelector('.loading-spinner');
+  if (loadingSpinner) {
+    loadingSpinner.classList.add('fade-out');
+    setTimeout(() => {
+      loadingSpinner.style.display = 'none';
+    }, 500);
+  }
+});
+
+// Safe utility function to get DOM elements
+window.getElement = function(selector) {
+  return document.querySelector(selector);
+};
+
+// Safe utility function to get multiple DOM elements
+window.getElements = function(selector) {
+  return document.querySelectorAll(selector);
+};
+
+// Format currency
+window.formatCurrency = function(amount) {
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0
+  }).format(amount);
+};
+
+// Format date
+window.formatDate = function(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+};
+
+// Truncate text with ellipsis
+window.truncateText = function(text, maxLength) {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
+
+console.log('Utils: Utility functions loaded');
