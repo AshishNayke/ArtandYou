@@ -129,3 +129,89 @@ function safeParseJSON(str, defaultValue = {}) {
     return defaultValue;
   }
 }
+// Utility functions for the Art&You marketplace
+
+console.log('Utils: Utility functions loaded');
+
+/**
+ * Validates an email address format
+ * @param {string} email - The email to validate
+ * @return {boolean} True if email format is valid
+ */
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+/**
+ * Formats a price with currency symbol
+ * @param {number} price - The price to format
+ * @param {string} currency - Currency code (default: USD)
+ * @return {string} Formatted price with currency symbol
+ */
+function formatPrice(price, currency = 'USD') {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency,
+  });
+  
+  return formatter.format(price);
+}
+
+/**
+ * Truncates text to a specified length and adds ellipsis
+ * @param {string} text - Text to truncate
+ * @param {number} maxLength - Maximum length
+ * @return {string} Truncated text
+ */
+function truncateText(text, maxLength) {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+}
+
+/**
+ * Checks if user is authenticated by checking localStorage
+ * @return {boolean} True if user is authenticated
+ */
+function isAuthenticated() {
+  const user = localStorage.getItem('artAndYouUser');
+  if (!user) return false;
+  
+  try {
+    const userData = JSON.parse(user);
+    return userData.isAuthenticated === true;
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Gets current user data from localStorage
+ * @return {Object|null} User data object or null if not authenticated
+ */
+function getCurrentUser() {
+  if (!isAuthenticated()) return null;
+  
+  try {
+    return JSON.parse(localStorage.getItem('artAndYouUser'));
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
+ * Handles API errors and displays appropriate messages
+ * @param {Error} error - The error object
+ * @param {string} fallbackMessage - Message to show if error lacks details
+ */
+function handleError(error, fallbackMessage = 'An error occurred. Please try again.') {
+  console.error('Error:', error);
+  
+  let message = fallbackMessage;
+  if (error.message) {
+    message = error.message;
+  }
+  
+  // Could be replaced with a proper toast/notification system
+  alert(message);
+}
