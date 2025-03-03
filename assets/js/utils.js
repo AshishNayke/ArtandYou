@@ -1,217 +1,237 @@
+// Auth Page Manager
+// Handles authentication forms, animations, and validation
 
-// Utility functions for the Art&You platform
-// This helps handle common operations safely
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('AuthManager: Initializing authentication page');
 
-// Safe element getter to avoid null reference errors
-window.getElement = function(selector) {
-  const element = document.querySelector(selector);
-  if (!element) {
-    console.warn(`Element with selector "${selector}" not found`);
+  // Initialize the auth forms with proper transitions
+  initAuthForms();
+
+  // Check URL parameters to determine which form to show initially
+  const urlParams = new URLSearchParams(window.location.search);
+  const formParam = urlParams.get('form');
+
+  // Show the appropriate form based on URL parameter
+  if (formParam === 'join') {
+    showForm('joinForm');
+  } else {
+    showForm('signInForm');
   }
-  return element;
-};
 
-// Safe property setter to avoid errors when setting properties on null elements
-window.safeSetProperty = function(element, property, value) {
-  if (!element) {
-    console.warn(`Cannot set ${property} on null element`);
-    return;
-  }
-  
-  try {
-    if (property.includes('.')) {
-      const props = property.split('.');
-      let obj = element;
-      for (let i = 0; i < props.length - 1; i++) {
-        if (!obj[props[i]]) return;
-        obj = obj[props[i]];
+  // Hide loading spinner when page is ready
+  const loadingSpinner = document.querySelector('.loading-spinner');
+  if (loadingSpinner) {
+    loadingSpinner.classList.add('fade-out');
+    setTimeout(() => {
+      loadingSpinner.style.display = 'none';
+      
+      // Add fade-in to the currently visible form
+      const currentForm = document.getElementById('signInForm').classList.contains('hidden') 
+        ? document.getElementById('joinForm') 
+        : document.getElementById('signInForm');
+      
+      if (currentForm) {
+        currentForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          currentForm.classList.remove('form-fade-in');
+        }, 500);
       }
-      obj[props[props.length - 1]] = value;
-    } else {
-      element[property] = value;
-    }
-  } catch (error) {
-    console.error(`Error setting property ${property}:`, error);
+    }, 500);
   }
-};
+});
 
-// Safe event handler attachments
-window.addSafeEventListener = function(element, event, handler) {
-  if (!element) {
-    console.warn(`Cannot add ${event} listener to null element`);
+// Initialize auth forms and tab navigation
+function initAuthForms() {
+  // Get DOM elements
+  const signInTab = document.getElementById('signInTab');
+  const joinTab = document.getElementById('joinTab');
+  const signInForm = document.getElementById('signInForm');
+  const joinForm = document.getElementById('joinForm');
+  const signInButton = document.getElementById('signInButton');
+  const joinButton = document.getElementById('joinButton');
+
+  // Setup tab navigation
+  if (signInTab && joinTab) {
+    signInTab.addEventListener('click', () => {
+      showForm('signInForm');
+    });
+
+    joinTab.addEventListener('click', () => {
+      showForm('joinForm');
+    });
+  }
+
+  // Add sign in functionality
+  if (signInButton) {
+    signInButton.addEventListener('click', handleSignIn);
+  }
+
+  // Add join functionality
+  if (joinButton) {
+    joinButton.addEventListener('click', handleJoin);
+  }
+}
+
+// Show the specified form and update tab states
+function showForm(formId) {
+  const signInTab = document.getElementById('signInTab');
+  const joinTab = document.getElementById('joinTab');
+  const signInForm = document.getElementById('signInForm');
+  const joinForm = document.getElementById('joinForm');
+
+  if (!signInForm || !joinForm || !signInTab || !joinTab) {
+    console.error('AuthManager: Form elements not found');
     return;
   }
-  
-  try {
-    element.addEventListener(event, handler);
-  } catch (error) {
-    console.error(`Error adding ${event} listener:`, error);
-  }
-};
 
-// Null-safe DOM operations
-window.domUtils = {
-  setText: function(selector, text) {
-    const element = document.querySelector(selector);
-    if (element) element.textContent = text;
-  },
-  
-  setHtml: function(selector, html) {
-    const element = document.querySelector(selector);
-    if (element) element.innerHTML = html;
-  },
-  
-  setAttr: function(selector, attr, value) {
-    const element = document.querySelector(selector);
-    if (element) element.setAttribute(attr, value);
-  },
-  
-  addClass: function(selector, className) {
-    const element = document.querySelector(selector);
-    if (element) element.classList.add(className);
-  },
-  
-  removeClass: function(selector, className) {
-    const element = document.querySelector(selector);
-    if (element) element.classList.remove(className);
-  }
-};
-// Utility functions for Art&You marketplace
+  // Update tab states
+  if (formId === 'signInForm') {
+    signInTab.classList.add('border-blue-600', 'text-blue-600');
+    joinTab.classList.remove('border-blue-600', 'text-blue-600');
 
-// Safe event handler attachment - prevents null reference errors
-function safeAddEventListener(elementId, eventType, callback) {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.addEventListener(eventType, callback);
-    return true;
-  }
-  return false;
-}
-
-// Safe query selector with event attachment
-function safeQuerySelector(selector, eventType, callback) {
-  const element = document.querySelector(selector);
-  if (element) {
-    element.addEventListener(eventType, callback);
-    return element;
-  }
-  return null;
-}
-
-// Check if an element exists in the DOM
-function elementExists(selector) {
-  return document.querySelector(selector) !== null;
-}
-
-// Function to safely access nested object properties
-function safeGet(obj, path, defaultValue = null) {
-  if (!obj) return defaultValue;
-  
-  const keys = path.split('.');
-  let result = obj;
-  
-  for (const key of keys) {
-    if (result === undefined || result === null) {
-      return defaultValue;
+    // Fade out join form if visible
+    if (!joinForm.classList.contains('hidden')) {
+      joinForm.classList.add('form-fade-out');
+      setTimeout(() => {
+        joinForm.classList.add('hidden');
+        joinForm.classList.remove('form-fade-out');
+        
+        // Fade in sign in form
+        signInForm.classList.remove('hidden');
+        signInForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          signInForm.classList.remove('form-fade-in');
+        }, 500);
+      }, 250);
+    } else {
+      // Just show sign in form with fade in
+      signInForm.classList.remove('hidden');
+      signInForm.classList.add('form-fade-in');
+      setTimeout(() => {
+        signInForm.classList.remove('form-fade-in');
+      }, 500);
     }
-    result = result[key];
-  }
-  
-  return result !== undefined ? result : defaultValue;
-}
+  } else {
+    joinTab.classList.add('border-blue-600', 'text-blue-600');
+    signInTab.classList.remove('border-blue-600', 'text-blue-600');
 
-// Function to safely handle JSON data
-function safeParseJSON(str, defaultValue = {}) {
-  try {
-    return JSON.parse(str);
-  } catch (e) {
-    console.warn('Error parsing JSON:', e);
-    return defaultValue;
-  }
-}
-// Utility functions for the Art&You marketplace
-
-console.log('Utils: Utility functions loaded');
-
-/**
- * Validates an email address format
- * @param {string} email - The email to validate
- * @return {boolean} True if email format is valid
- */
-function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
-
-/**
- * Formats a price with currency symbol
- * @param {number} price - The price to format
- * @param {string} currency - Currency code (default: USD)
- * @return {string} Formatted price with currency symbol
- */
-function formatPrice(price, currency = 'USD') {
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: currency,
-  });
-  
-  return formatter.format(price);
-}
-
-/**
- * Truncates text to a specified length and adds ellipsis
- * @param {string} text - Text to truncate
- * @param {number} maxLength - Maximum length
- * @return {string} Truncated text
- */
-function truncateText(text, maxLength) {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength) + '...';
-}
-
-/**
- * Checks if user is authenticated by checking localStorage
- * @return {boolean} True if user is authenticated
- */
-function isAuthenticated() {
-  const user = localStorage.getItem('artAndYouUser');
-  if (!user) return false;
-  
-  try {
-    const userData = JSON.parse(user);
-    return userData.isAuthenticated === true;
-  } catch (e) {
-    return false;
+    // Fade out sign in form if visible
+    if (!signInForm.classList.contains('hidden')) {
+      signInForm.classList.add('form-fade-out');
+      setTimeout(() => {
+        signInForm.classList.add('hidden');
+        signInForm.classList.remove('form-fade-out');
+        
+        // Fade in join form
+        joinForm.classList.remove('hidden');
+        joinForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          joinForm.classList.remove('form-fade-in');
+        }, 500);
+      }, 250);
+    } else {
+      // Just show join form with fade in
+      joinForm.classList.remove('hidden');
+      joinForm.classList.add('form-fade-in');
+      setTimeout(() => {
+        joinForm.classList.remove('form-fade-in');
+      }, 500);
+    }
   }
 }
 
-/**
- * Gets current user data from localStorage
- * @return {Object|null} User data object or null if not authenticated
- */
-function getCurrentUser() {
-  if (!isAuthenticated()) return null;
-  
-  try {
-    return JSON.parse(localStorage.getItem('artAndYouUser'));
-  } catch (e) {
-    return null;
+// Handle sign in form submission
+function handleSignIn() {
+  const email = document.getElementById('signInEmail').value;
+  const password = document.getElementById('signInPassword').value;
+
+  // Simple validation
+  if (!email || !password) {
+    alert('Please enter both email and password');
+    return;
+  }
+
+  // Show loading spinner
+  showLoadingSpinner();
+
+  // Simulate authentication (for demo purposes)
+  setTimeout(() => {
+    // Store user info in localStorage
+    const userInfo = {
+      email: email,
+      name: email.split('@')[0],
+      isAuthenticated: true,
+      loginTime: new Date().toISOString()
+    };
+
+    localStorage.setItem('artAndYouUser', JSON.stringify(userInfo));
+
+    // Redirect to home page
+    window.location.href = '../index.html';
+  }, 1500);
+}
+
+// Handle join form submission
+function handleJoin() {
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const email = document.getElementById('joinEmail').value;
+  const password = document.getElementById('joinPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const termsCheckbox = document.getElementById('terms');
+
+  // Simple validation
+  if (!firstName || !lastName || !email || !password) {
+    alert('Please fill in all required fields');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+
+  if (!termsCheckbox.checked) {
+    alert('You must agree to the terms and privacy policy');
+    return;
+  }
+
+  // Show loading spinner
+  showLoadingSpinner();
+
+  // Simulate account creation (for demo purposes)
+  setTimeout(() => {
+    // Store user info in localStorage
+    const userInfo = {
+      email: email,
+      name: firstName + ' ' + lastName,
+      isAuthenticated: true,
+      loginTime: new Date().toISOString()
+    };
+
+    localStorage.setItem('artAndYouUser', JSON.stringify(userInfo));
+
+    // Redirect to home page
+    window.location.href = '../index.html';
+  }, 1500);
+}
+
+// Show loading spinner
+function showLoadingSpinner() {
+  const loadingSpinner = document.querySelector('.loading-spinner');
+  if (loadingSpinner) {
+    loadingSpinner.style.display = 'flex';
+    loadingSpinner.classList.remove('fade-out');
   }
 }
 
-/**
- * Handles API errors and displays appropriate messages
- * @param {Error} error - The error object
- * @param {string} fallbackMessage - Message to show if error lacks details
- */
-function handleError(error, fallbackMessage = 'An error occurred. Please try again.') {
-  console.error('Error:', error);
-  
-  let message = fallbackMessage;
-  if (error.message) {
-    message = error.message;
-  }
-  
-  // Could be replaced with a proper toast/notification system
+// Helper function to show notifications (from original code)
+function showNotification(message, type = 'info') {
+  // For now just use alert, but this could be enhanced with a nice toast/notification system
   alert(message);
+}
+
+// Helper function to generate a mock user ID (from original code)
+function generateMockId() {
+  return 'user_' + Math.random().toString(36).substring(2, 15);
 }
