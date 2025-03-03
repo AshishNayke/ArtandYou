@@ -28,8 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// Initialize auth forms and tab navigation
 function initAuthForms() {
-  // Safely get form elements using utility functions
+  // Get DOM elements
   const signInTab = document.getElementById('signInTab');
   const joinTab = document.getElementById('joinTab');
   const signInForm = document.getElementById('signInForm');
@@ -37,212 +38,150 @@ function initAuthForms() {
   const signInButton = document.getElementById('signInButton');
   const joinButton = document.getElementById('joinButton');
 
-  // Add active class to the sign in tab by default
-  if (signInTab) {
-    signInTab.classList.add('border-blue-600', 'text-blue-600');
-  }
-
-  // Add tab click handlers safely
-  if (signInTab) {
-    signInTab.addEventListener('click', function() {
+  // Setup tab navigation
+  if (signInTab && joinTab) {
+    signInTab.addEventListener('click', () => {
       showForm('signInForm');
     });
-  }
 
-  if (joinTab) {
-    joinTab.addEventListener('click', function() {
+    joinTab.addEventListener('click', () => {
       showForm('joinForm');
     });
   }
 
-  // Add form submission handlers
+  // Add sign in functionality
   if (signInButton) {
-    signInButton.addEventListener('click', function() {
-      handleSignIn();
-    });
+    signInButton.addEventListener('click', handleSignIn);
   }
 
+  // Add join functionality
   if (joinButton) {
-    joinButton.addEventListener('click', function() {
-      handleJoin();
-    });
+    joinButton.addEventListener('click', handleJoin);
   }
 }
 
-// Show the selected form with fade animation
+// Show the specified form and update tab states
 function showForm(formId) {
   const signInTab = document.getElementById('signInTab');
   const joinTab = document.getElementById('joinTab');
   const signInForm = document.getElementById('signInForm');
   const joinForm = document.getElementById('joinForm');
 
-  // Reset all tabs
-  if (signInTab) signInTab.classList.remove('border-blue-600', 'text-blue-600');
-  if (joinTab) joinTab.classList.remove('border-blue-600', 'text-blue-600');
-
-  // Fade out both forms first
-  if (signInForm) {
-    signInForm.classList.add('form-fade-out');
-    signInForm.classList.remove('form-fade-in');
+  if (!signInForm || !joinForm || !signInTab || !joinTab) {
+    console.error('AuthManager: Form elements not found');
+    return;
   }
 
-  if (joinForm) {
-    joinForm.classList.add('form-fade-out');
-    joinForm.classList.remove('form-fade-in');
+  // Update tab states
+  if (formId === 'signInForm') {
+    signInTab.classList.add('border-blue-600', 'text-blue-600');
+    joinTab.classList.remove('border-blue-600', 'text-blue-600');
+
+    // Show sign in form, hide join form
+    signInForm.classList.remove('hidden');
+    joinForm.classList.add('hidden');
+  } else {
+    joinTab.classList.add('border-blue-600', 'text-blue-600');
+    signInTab.classList.remove('border-blue-600', 'text-blue-600');
+
+    // Show join form, hide sign in form
+    joinForm.classList.remove('hidden');
+    signInForm.classList.add('hidden');
   }
-
-  // After a short delay, hide previous form and show the selected one
-  setTimeout(() => {
-    if (formId === 'signInForm') {
-      // Update tab appearance
-      if (signInTab) signInTab.classList.add('border-blue-600', 'text-blue-600');
-
-      // Show sign in form
-      if (signInForm) {
-        signInForm.classList.remove('hidden', 'form-fade-out');
-        signInForm.classList.add('form-fade-in');
-      }
-
-      // Hide join form
-      if (joinForm) {
-        joinForm.classList.add('hidden');
-      }
-    } else {
-      // Update tab appearance
-      if (joinTab) joinTab.classList.add('border-blue-600', 'text-blue-600');
-
-      // Show join form
-      if (joinForm) {
-        joinForm.classList.remove('hidden', 'form-fade-out');
-        joinForm.classList.add('form-fade-in');
-      }
-
-      // Hide sign in form
-      if (signInForm) {
-        signInForm.classList.add('hidden');
-      }
-    }
-  }, 250);
 }
 
 // Handle sign in form submission
 function handleSignIn() {
-  const email = document.getElementById('signInEmail')?.value;
-  const password = document.getElementById('signInPassword')?.value;
-  const remember = document.getElementById('remember')?.checked;
+  const email = document.getElementById('signInEmail').value;
+  const password = document.getElementById('signInPassword').value;
 
-  // Validate inputs
+  // Simple validation
   if (!email || !password) {
-    showNotification('Please fill in all fields', 'error');
+    alert('Please enter both email and password');
     return;
   }
 
   // Show loading spinner
-  const loadingSpinner = document.querySelector('.loading-spinner');
-  if (loadingSpinner) {
-    loadingSpinner.style.display = 'flex';
-    loadingSpinner.classList.remove('fade-out');
-  }
+  showLoadingSpinner();
 
-  // Simulate API call
+  // Simulate authentication (for demo purposes)
   setTimeout(() => {
-    // In a real app, this would be an API call
-
-    // Mock successful authentication
-    const userData = {
-      isAuthenticated: true,
-      name: email.split('@')[0],
+    // Store user info in localStorage
+    const userInfo = {
       email: email,
-      id: generateMockId(),
-      profileImage: null,
-      preferences: {}
+      name: email.split('@')[0],
+      isAuthenticated: true,
+      loginTime: new Date().toISOString()
     };
 
-    // Store user data in localStorage
-    localStorage.setItem('artAndYouUser', JSON.stringify(userData));
+    localStorage.setItem('artAndYouUser', JSON.stringify(userInfo));
 
-    // Hide loading spinner with animation
-    if (loadingSpinner) {
-      loadingSpinner.classList.add('fade-out');
-      setTimeout(() => {
-        loadingSpinner.style.display = 'none';
-
-        // Redirect to homepage
-        window.location.href = '../index.html';
-      }, 500);
-    }
+    // Redirect to home page
+    window.location.href = '../index.html';
   }, 1500);
 }
 
 // Handle join form submission
 function handleJoin() {
-  const firstName = document.getElementById('firstName')?.value;
-  const lastName = document.getElementById('lastName')?.value;
-  const email = document.getElementById('joinEmail')?.value;
-  const password = document.getElementById('joinPassword')?.value;
-  const confirmPassword = document.getElementById('confirmPassword')?.value;
-  const terms = document.getElementById('terms')?.checked;
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const email = document.getElementById('joinEmail').value;
+  const password = document.getElementById('joinPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const termsCheckbox = document.getElementById('terms');
 
-  // Validate inputs
-  if (!firstName || !lastName || !email || !password || !confirmPassword) {
-    showNotification('Please fill in all fields', 'error');
+  // Simple validation
+  if (!firstName || !lastName || !email || !password) {
+    alert('Please fill in all required fields');
     return;
   }
 
   if (password !== confirmPassword) {
-    showNotification('Passwords do not match', 'error');
+    alert('Passwords do not match');
     return;
   }
 
-  if (!terms) {
-    showNotification('Please agree to the terms', 'error');
+  if (!termsCheckbox.checked) {
+    alert('You must agree to the terms and privacy policy');
     return;
   }
 
   // Show loading spinner
+  showLoadingSpinner();
+
+  // Simulate account creation (for demo purposes)
+  setTimeout(() => {
+    // Store user info in localStorage
+    const userInfo = {
+      email: email,
+      name: firstName + ' ' + lastName,
+      isAuthenticated: true,
+      loginTime: new Date().toISOString()
+    };
+
+    localStorage.setItem('artAndYouUser', JSON.stringify(userInfo));
+
+    // Redirect to home page
+    window.location.href = '../index.html';
+  }, 1500);
+}
+
+// Show loading spinner
+function showLoadingSpinner() {
   const loadingSpinner = document.querySelector('.loading-spinner');
   if (loadingSpinner) {
     loadingSpinner.style.display = 'flex';
     loadingSpinner.classList.remove('fade-out');
   }
-
-  // Simulate API call
-  setTimeout(() => {
-    // In a real app, this would be an API call
-
-    // Mock successful registration
-    const userData = {
-      isAuthenticated: true,
-      name: firstName + ' ' + lastName,
-      email: email,
-      id: generateMockId(),
-      profileImage: null,
-      preferences: {}
-    };
-
-    // Store user data in localStorage
-    localStorage.setItem('artAndYouUser', JSON.stringify(userData));
-
-    // Hide loading spinner with animation
-    if (loadingSpinner) {
-      loadingSpinner.classList.add('fade-out');
-      setTimeout(() => {
-        loadingSpinner.style.display = 'none';
-
-        // Redirect to homepage
-        window.location.href = '../index.html';
-      }, 500);
-    }
-  }, 1500);
 }
 
-// Helper function to show notifications
+// Helper function to show notifications (from original code)
 function showNotification(message, type = 'info') {
   // For now just use alert, but this could be enhanced with a nice toast/notification system
   alert(message);
 }
 
-// Helper function to generate a mock user ID
+// Helper function to generate a mock user ID (from original code)
 function generateMockId() {
   return 'user_' + Math.random().toString(36).substring(2, 15);
 }
