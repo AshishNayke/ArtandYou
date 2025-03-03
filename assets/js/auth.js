@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Show the appropriate form based on URL parameter
   if (formParam === 'join') {
     showForm('joinForm');
+  } else if (formParam === 'sign-in') {
+    showForm('signInForm');
   } else {
+    // Default to sign in if no valid parameter
     showForm('signInForm');
   }
 
@@ -24,6 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
     loadingSpinner.classList.add('fade-out');
     setTimeout(() => {
       loadingSpinner.style.display = 'none';
+      
+      // Add fade-in to the currently visible form
+      const currentForm = document.getElementById('signInForm').classList.contains('hidden') 
+        ? document.getElementById('joinForm') 
+        : document.getElementById('signInForm');
+      
+      if (currentForm) {
+        currentForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          currentForm.classList.remove('form-fade-in');
+        }, 500);
+      }
     }, 500);
   }
 });
@@ -77,16 +92,54 @@ function showForm(formId) {
     signInTab.classList.add('border-blue-600', 'text-blue-600');
     joinTab.classList.remove('border-blue-600', 'text-blue-600');
 
-    // Show sign in form, hide join form
-    signInForm.classList.remove('hidden');
-    joinForm.classList.add('hidden');
+    // Fade out join form if visible
+    if (!joinForm.classList.contains('hidden')) {
+      joinForm.classList.add('form-fade-out');
+      setTimeout(() => {
+        joinForm.classList.add('hidden');
+        joinForm.classList.remove('form-fade-out');
+        
+        // Fade in sign in form
+        signInForm.classList.remove('hidden');
+        signInForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          signInForm.classList.remove('form-fade-in');
+        }, 500);
+      }, 250);
+    } else {
+      // Just show sign in form with fade in
+      signInForm.classList.remove('hidden');
+      signInForm.classList.add('form-fade-in');
+      setTimeout(() => {
+        signInForm.classList.remove('form-fade-in');
+      }, 500);
+    }
   } else {
     joinTab.classList.add('border-blue-600', 'text-blue-600');
     signInTab.classList.remove('border-blue-600', 'text-blue-600');
 
-    // Show join form, hide sign in form
-    joinForm.classList.remove('hidden');
-    signInForm.classList.add('hidden');
+    // Fade out sign in form if visible
+    if (!signInForm.classList.contains('hidden')) {
+      signInForm.classList.add('form-fade-out');
+      setTimeout(() => {
+        signInForm.classList.add('hidden');
+        signInForm.classList.remove('form-fade-out');
+        
+        // Fade in join form
+        joinForm.classList.remove('hidden');
+        joinForm.classList.add('form-fade-in');
+        setTimeout(() => {
+          joinForm.classList.remove('form-fade-in');
+        }, 500);
+      }, 250);
+    } else {
+      // Just show join form with fade in
+      joinForm.classList.remove('hidden');
+      joinForm.classList.add('form-fade-in');
+      setTimeout(() => {
+        joinForm.classList.remove('form-fade-in');
+      }, 500);
+    }
   }
 }
 
@@ -98,6 +151,12 @@ function handleSignIn() {
   // Simple validation
   if (!email || !password) {
     alert('Please enter both email and password');
+    return;
+  }
+  
+  // Email validation using the utility function
+  if (!validateEmail(email)) {
+    alert('Please enter a valid email address');
     return;
   }
 
@@ -133,6 +192,12 @@ function handleJoin() {
   // Simple validation
   if (!firstName || !lastName || !email || !password) {
     alert('Please fill in all required fields');
+    return;
+  }
+  
+  // Email validation using the utility function
+  if (!validateEmail(email)) {
+    alert('Please enter a valid email address');
     return;
   }
 
