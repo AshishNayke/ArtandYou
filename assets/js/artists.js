@@ -97,7 +97,7 @@ if (typeof window.artistsData === 'undefined') {
       bio: "Photographer",
       specialty: "Photographer",
       description: "Documentary and fine art photographer focusing on social themes.",
-      image: "assets/images/auction/painting23.jpg",
+      image: "assets/images/artists/download (1).jpg",
       profileLink: "#",
       artworksCount: 56,
       rating: 4.8,
