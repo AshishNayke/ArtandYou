@@ -6,7 +6,7 @@ if (typeof window.artistsData === 'undefined') {
   window.artistsData = [
     {
       id: 1,
-      name: "Elena Mikhailov",
+      name: "Rita ",
       bio: "Master Painter",
       specialty: "Painter",
       description: "Known for impressionist style and vibrant use of colors.",
@@ -17,14 +17,14 @@ if (typeof window.artistsData === 'undefined') {
       followers: 1250,
       badge: true,
       badgeType: "Featured",
-      location: "Paris, France"
+      location: "Meghlaya,India"
     },
     {
       id: 2,
-      name: "Alex Chen",
-      bio: "Digital Artist",
-      specialty: "Digital Artist",
-      description: "Creating surreal digital landscapes and futuristic concepts.",
+      name: "Elena Mikhailov",
+      bio: "Painting",
+      specialty: "Painter",
+      description: "Creating surreal and captivting art",
       image: "assets/images/auction/painting20.jpg",
       profileLink: "#",
       artworksCount: 36,
@@ -32,28 +32,28 @@ if (typeof window.artistsData === 'undefined') {
       followers: 890,
       badge: true,
       badgeType: "Trending",
-      location: "Tokyo, Japan"
+      location: "Italy, Europe"
     },
     {
       id: 3,
-      name: "Marco Visconti",
-      bio: "Sculptor",
-      specialty: "Sculptor",
-      description: "Contemporary sculptor working with mixed materials.",
+      name: "Kamini",
+      bio: "Painter",
+      specialty: "Painter",
+      description: " painting with little touch of rebellion ",
       image: "assets/images/artists/5.jpg",
       profileLink: "#",
       artworksCount: 24,
       rating: 4.8,
       followers: 760,
       badge: false,
-      location: "Rome, Italy"
+      location: "Mumbai, India"
     },
     {
       id: 4,
-      name: "Samantha Wu",
-      bio: "Digital Artist",
-      specialty: "Digital Artist",
-      description: "Specializes in cosmic and spiritually inspired digital art.",
+      name: "Priya",
+      bio: "Painter",
+      specialty: "Painte",
+      description: "Specializes in Human emotions, cosmic and spiritually inspired art.",
       image: "assets/images/artists/6.jpg",
       profileLink: "#",
       artworksCount: 42,
@@ -61,7 +61,7 @@ if (typeof window.artistsData === 'undefined') {
       followers: 1050,
       badge: true,
       badgeType: "Popular",
-      location: "San Francisco, USA"
+      location: "M.P., India"
     },
     {
       id: 5,
@@ -80,9 +80,9 @@ if (typeof window.artistsData === 'undefined') {
     {
       id: 6,
       name: "Isabella Fontana",
-      bio: "Sculptor",
-      specialty: "Sculptor",
-      description: "Modern sculptor exploring forms and negative space.",
+      bio: "Digital Art",
+      specialty: "Digital Artist",
+      description: "Modern Art exploring forms and negative space.",
       image: "assets/images/artists/digiart7.jpg",
       profileLink: "#",
       artworksCount: 19,
@@ -93,10 +93,10 @@ if (typeof window.artistsData === 'undefined') {
     },
     {
       id: 7,
-      name: "Jordan Mays",
-      bio: "Photographer",
-      specialty: "Photographer",
-      description: "Documentary and fine art photographer focusing on social themes.",
+      name: "su Wang",
+      bio: "Artist",
+      specialty: "Artist",
+      description: "fine art focusing on social themes.",
       image: "assets/images/artists/1.jpg",
       profileLink: "#",
       artworksCount: 56,
@@ -104,14 +104,14 @@ if (typeof window.artistsData === 'undefined') {
       followers: 920,
       badge: true,
       badgeType: "Featured",
-      location: "Cape Town, South Africa"
+      location: "Kyuto, Japan"
     },
     {
       id: 8,
-      name: "Jaya Patel",
-      bio: "Painter",
-      specialty: "Painter",
-      description: "Contemporary painter exploring themes of identity and culture.",
+      name: "Sia Patel",
+      bio: "Sculpturist",
+      specialty: "Sculpture",
+      description: "Home Decor",
       image: "assets/images/gallery/sclupture12.jpg",
       profileLink: "#",
       artworksCount: 37,
