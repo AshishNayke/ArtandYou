@@ -25,7 +25,7 @@ if (typeof window.artistsData === 'undefined') {
       bio: "Digital Artist",
       specialty: "Digital Artist",
       description: "Creating surreal digital landscapes and futuristic concepts.",
-      image: "assets/images/auction/painting20.jpg",
+      image: "assets/images/auction/painting12.jpg",
       profileLink: "#",
       artworksCount: 36,
       rating: 4.7,
