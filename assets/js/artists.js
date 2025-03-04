@@ -112,7 +112,7 @@ if (typeof window.artistsData === 'undefined') {
       bio: "Painter",
       specialty: "Painter",
       description: "Contemporary painter exploring themes of identity and culture.",
-      image: "assets/images/auction/painting26.jpg",
+      image: "assets/images/artists/painting16.jpg",
       profileLink: "#",
       artworksCount: 37,
       rating: 4.6,
