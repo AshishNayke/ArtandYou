@@ -645,26 +645,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// This file contains auction-specific functionality and data
-
-// Check if we're on the home page and limit items to 4 if needed
-document.addEventListener('DOMContentLoaded', function() {
-  const auctionGrid = document.querySelector('.auction-grid');
-  const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
-  
-  if (auctionGrid && isHomePage) {
-    // Get all auction items
-    const auctionItems = auctionGrid.querySelectorAll('.auction-item');
-    
-    // If we have auction items and this is the home page, show only 4
-    if (auctionItems && auctionItems.length > 4) {
-      // Hide all items beyond the 4th one
-      for (let i = 4; i < auctionItems.length; i++) {
-        auctionItems[i].style.display = 'none';
-      }
-    }
-  }
-});
-
-// Rest of your auctions.js code...
-
